@@ -13,9 +13,10 @@ from django.utils import timezone
 
 class Tweet(models.Model):    
     # a user to which this tweet is associated
-    user = models.ForeignKey(settings.AUTH_USER_MODEL) 
     tweet_content = models.CharField(max_length=140,default="post your tweet here")
     
+    updated = models.DateTimeField(default=timezone.now)
+    timestamp = models.DateTimeField(default=timezone.now)
 
     #tweet_number = models.IntegerField(default=1)
 
