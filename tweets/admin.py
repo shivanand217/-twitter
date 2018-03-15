@@ -3,6 +3,6 @@ from django.contrib import admin
 # Bring all the models
 # and Register your models.
 
-from .models import Tweet
+from .models import Twee_t
 
-admin.site.register(Tweet)
+admin.site.register(Twee_t)
