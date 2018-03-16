@@ -13,14 +13,17 @@ class TweetDetailView(DetailView):
     #template_name = "tweets/detail_view.html"
     queryset = Twee_t.objects.all()
 
-    '''def get_object(self):
+    def get_object(self):
+        print(self.kwargs)
         return Twee_t.objects.get(id= 1)
+
     '''
     def get_context_data(self, *args, **kwargs):
         context = super(TweetDetailView, self).get_context_data(*args, **kwargs)
         
         print(context)
         return context
+    '''
 
 class TweetListView(ListView):
     #template_name = "tweets/list_view.html"

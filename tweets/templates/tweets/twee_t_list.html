@@ -1,8 +1,11 @@
 
 {% for tweet in object_list %}
 
-{{ tweet.user }} <br/>
+<h1>User is</h1> <p>{{ tweet.user }}</p> <br/>
 {{ tweet.tweet_content }}  <br/>
 {{ tweet.timestamp }} <br/>
+
+{% empty %}
+    <p> No tweets yet. </p>
 
 {% endfor %}
