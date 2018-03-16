@@ -22,7 +22,7 @@ def tweet_detail_view(request, id= 1):
         "object_detail": obj,
         "success_msg": msg,
         "greetings": greetings,
-        "id": queried_id,
+        "id": queried_id
     }
 
     return render(request, "tweets/detail_view.html", context)
@@ -33,6 +33,7 @@ def tweet_list_view(request):
     queryset = Twee_t.objects.all()
     for obj in queryset:
         print(obj.tweet_content)
+        
     context = {
         "object_list": queryset
     }

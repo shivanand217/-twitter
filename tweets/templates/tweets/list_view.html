@@ -1,5 +1,8 @@
 
 {% for tweet in object_list %}
-    {{ tweet }} 
+
+    {{ tweet.user }}
+    {{ tweet.tweet_content }}
+    {{ tweet.timestamp }} 
 
 {% endfor %}
