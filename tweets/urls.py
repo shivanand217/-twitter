@@ -9,8 +9,8 @@ urlpatterns = [
     
     #url(r'^admin/', admin.site.urls),
     # create url for home view
-    url(r'^$', TweetDetailView.as_view(), name= 'details'),
-    url(r'^1/$', TweetListView.as_view(), name= 'list'),
+    url(r'^$', TweetListView.as_view(), name= 'list'),
+    url(r'^1/$', TweetDetailView.as_view(), name= 'detail'),
 ]
 
 

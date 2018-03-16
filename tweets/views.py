@@ -1,14 +1,14 @@
 from django.shortcuts import render
 
 # Django builtin class based View
+
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.utils import timezone 
 
-
 from .models import Twee_t
 
-# Class based views
+''' Class based views'''
 class TweetDetailView(DetailView):
     #template_name = "tweets/detail_view.html"
     queryset = Twee_t.objects.all()
@@ -25,19 +25,23 @@ class TweetDetailView(DetailView):
 class TweetListView(ListView):
     #template_name = "tweets/list_view.html"
     queryset = Twee_t.objects.all()
-
     '''
     def get_object(self):
+        print("get object function")
         return Twee_t.objects.get(id= 1)
     '''
 
     def get_context_data(self, *args, **kwargs):
         context = super(TweetListView, self).get_context_data(*args, **kwargs)
-
+        # we can add context here
+        context["another_context"] = Twee_t.objects.all()
         print(context)
         return context
+   
 
 '''
+function based views
+
 def tweet_detail_view(request, id= 1):
     #content = Tweet.objects.get(tweet_content= 'hello this is shiv')
     #obj     = Tweet.objects.get(id = 1)
