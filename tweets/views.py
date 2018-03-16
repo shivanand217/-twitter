@@ -9,17 +9,23 @@ from .models import Twee_t
 # Delete
 # List/Search
 
-def tweet_detail_view(request, id=1):
-
+def tweet_detail_view(request, id= 1):
     #content = Tweet.objects.get(tweet_content= 'hello this is shiv')
     #obj     = Tweet.objects.get(id = 1)
-    us = Twee_t.objects.get(id= id)
-    print(us.tweet_content)
-    
-    print("queried")
-    #print(us)
+    obj = Twee_t.objects.get(id= id)
+    queried_id = 1
 
-    return render(request, "tweets/detail_view.html", {})
+    greetings = "hey hello"
+    msg = "queried message with id "
+
+    context = {
+        "object_detail": obj,
+        "success_msg": msg,
+        "greetings": greetings,
+        "id": queried_id,
+    }
+
+    return render(request, "tweets/detail_view.html", context)
 
 
 def tweet_list_view(request):
@@ -30,5 +36,6 @@ def tweet_list_view(request):
     context = {
         "object_list": queryset
     }
-    return render(request, "tweets/list_view.html", {})
+    
+    return render(request, "tweets/list_view.html", context)
 
