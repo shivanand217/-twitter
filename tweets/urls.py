@@ -6,11 +6,10 @@ from .views import TweetDetailView, TweetListView
 
 
 urlpatterns = [
-
     #url(r'^admin/', admin.site.urls),
     # create url for home view
     url(r'^$', TweetListView.as_view(), name= 'list'),  #  maps to /tweet/
-    url(r'^(?P<abc>\d+)/$', TweetDetailView.as_view(), name= 'detail')  # maps to /tweet/1/
+    url(r'^(?P<pk>\d+)/$', TweetDetailView.as_view(), name= 'detail')  # maps to /tweet/<number>/
 ]
 
 

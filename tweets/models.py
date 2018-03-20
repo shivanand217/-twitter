@@ -1,4 +1,3 @@
-
 # import settings for auth
 
 from django.conf import settings
@@ -11,7 +10,6 @@ from django.utils import timezone
 # every time when make changes to the models do manage.py makemigrations
 
 # class name has to be imported as models in our views
-
 
 class Twee_t(models.Model):
 
