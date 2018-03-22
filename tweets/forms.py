@@ -16,6 +16,6 @@ class TweetModelForm(forms.ModelForm):
         def clean_content(self, *args, **kwargs):
             content = self.cleaned_data['tweet_content']
 
-            if tweet_content == "shiv":
+            if tweet_content == "abc":
                 raise forms.ValidationError("Cannot be shiv")
             return content
