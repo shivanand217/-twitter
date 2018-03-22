@@ -13,7 +13,7 @@ from .models import Twee_t
 class TweetDetailView(DetailView):
     template_name = "tweets/detail_view.html"
     queryset = Twee_t.objects.all()
-    
+
     '''
     def get_object(self):
         try:
@@ -42,7 +42,7 @@ class TweetListView(ListView):
         #return Twee_t.objects.get(pk= 1)
         return queryset
     '''
-
+    
     def get_context_data(self, *args, **kwargs):
         context = super(TweetListView, self).get_context_data(*args, **kwargs)
         # we can add context here
