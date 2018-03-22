@@ -5,12 +5,12 @@ from .models import Twee_t
 class TweetModelForm(forms.ModelForm):
     
     class Meta:
+        # give the model name here to which this form should be added
         model = Twee_t
-
         fields = [
-            "user",
-            "tweet_content",
-            "hashtag"
+            "User",
+            "Tweet_content",
+            "Hashtag"
         ]
 
         def clean_content(self, *args, **kwargs):

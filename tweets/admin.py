@@ -12,5 +12,4 @@ class TweetModelAdmin(admin.ModelAdmin):
     #class Meta:
       #  model = Twee_t
 
-
 admin.site.register(Twee_t, TweetModelAdmin)
