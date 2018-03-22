@@ -1,3 +1,4 @@
+
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -16,27 +17,34 @@ class Twee_t(models.Model):
     tweet_content = models.CharField(max_length= 150, default= "write tweet here")
     updated = models.DateTimeField(auto_now= True)
     timestamp = models.DateTimeField(auto_now_add= True)
-    hashtag = models.CharField(max_length= 160, default= "put your hashtag here")
-    #college_name = models.CharField(max_length= 200, default= "Institute if engineering and management")
-    #city_name = models.CharField(max_length= 20, default= "Patna")
-    #state = models.CharField(max_length= 20, default= "Bihar")
-    phone = models.IntegerField(default= 7004602281)
+    hashtag = models.CharField(max_length= 160, default= "put hashtag without #")
+    college_name = models.CharField(max_length= 200)
+    city_name = models.CharField(max_length= 20, default= "Patna")
+    state = models.CharField(max_length= 20, default= "Bihar")
+    phone = models.BigIntegerField()
     
-
-    # some abusive hashtags
-    abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt"
-                    , "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
-                    "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
-                    "buttcheeks", "butthole","negro","neonazi","nigga","zoophilia"]
 
     def __str__(self):
         return str(self.tweet_content)    
 
     # Validation in the model
     def clean(self, *args, **kwargs):
-        content = self.tweet_content
-        if content == "abc":
-            raise ValidationError("Cannot be abc")
+        # some abusive hashtags
+        abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt"
+                    , "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
+                    "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
+                    "buttcheeks", "butthole","negro","neonazi","nigga","zoophilia"]
+
+        validation_error = []
+
+        Tweet_content = self.tweet_content
+        if Tweet_content == "abc":
+            raise ValidationError("Tweet_content cannot be abc.")
+
+        # validate hashtags
+        tag = self.hashtag
+        if tag in abusive_words:
+            raise ValidationError("This hashtag is abusive. You can't use this.")
 
         # args in super(ModelName, self).clean(*args, **kwargs)
         return super(Twee_t, self).clean(*args, **kwargs)
