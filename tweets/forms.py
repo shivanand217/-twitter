@@ -23,9 +23,9 @@ class TweetModelForm(forms.ModelForm):
 
         def clean_content(self, *args, **kwargs):
             content = self.cleaned_data['tweet_content']
+            
             if tweet_content == "abc":
                 raise forms.ValidationError("Cannot be ABC....")
-            #tag = self.cleaned_data['hashtag']
-            #city = self.cleaned_data['city']
+            
             return content
     

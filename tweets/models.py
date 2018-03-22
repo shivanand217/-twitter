@@ -22,18 +22,19 @@ class Twee_t(models.Model):
     city_name = models.CharField(max_length= 20, default= "Patna")
     state = models.CharField(max_length= 20, default= "Bihar")
     phone = models.BigIntegerField()
-    
+
 
     def __str__(self):
         return str(self.tweet_content)    
 
     # Validation in the model
     def clean(self, *args, **kwargs):
+        
         # some abusive hashtags
-        abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt"
-                    , "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
-                    "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
-                    "buttcheeks", "butthole","negro","neonazi","nigga","zoophilia"]
+        abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt",
+                         "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
+                        "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
+                        "buttcheeks", "butthole","negro","neonazi","nigga","zoophilia"]
 
         validation_error = []
 
