@@ -21,6 +21,7 @@ class Twee_t(models.Model):
     State = models.CharField(max_length= 20, default= "Bihar")
     Phone = models.IntegerField(default= 7004602281)
     
+    # bad hashtags
     abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt"
                     , "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
                     "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
