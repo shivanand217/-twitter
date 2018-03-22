@@ -7,15 +7,15 @@ class TweetModelForm(forms.ModelForm):
     class Meta:
         # give the model name here to which this form should be added
         model = Twee_t
+
         fields = [
-            "User",
-            "Tweet_content",
-            "Hashtag"
+            "user",
+            "tweet_content",
+            "hashtag"
         ]
 
         def clean_content(self, *args, **kwargs):
             content = self.cleaned_data['tweet_content']
-
             if tweet_content == "abc":
-                raise forms.ValidationError("Cannot be shiv")
+                raise forms.ValidationError("Cannot be ABC")
             return content
