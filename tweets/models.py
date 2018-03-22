@@ -10,18 +10,20 @@ from django.core.exceptions import ValidationError
 
 # class name has to be imported as models in our views
 class Twee_t(models.Model):
+
     # a user to which this tweet is associated
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default= 1)
     tweet_content = models.CharField(max_length= 150, default= "write tweet here")
     updated = models.DateTimeField(auto_now= True)
     timestamp = models.DateTimeField(auto_now_add= True)
     hashtag = models.CharField(max_length= 160, default= "put your hashtag here")
-    College_name = models.CharField(max_length= 200, default= "Institute if engineering and management")
-    City_name = models.CharField(max_length= 20, default= "Patna")
-    State = models.CharField(max_length= 20, default= "Bihar")
-    Phone = models.IntegerField(default= 7004602281)
+    #college_name = models.CharField(max_length= 200, default= "Institute if engineering and management")
+    #city_name = models.CharField(max_length= 20, default= "Patna")
+    #state = models.CharField(max_length= 20, default= "Bihar")
+    phone = models.IntegerField(default= 7004602281)
     
-    # bad hashtags
+
+    # some abusive hashtags
     abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt"
                     , "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
                     "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
