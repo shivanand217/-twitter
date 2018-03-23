@@ -1,4 +1,3 @@
-
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -11,7 +10,6 @@ from django.core.exceptions import ValidationError
 
 # class name has to be imported as models in our views
 class Twee_t(models.Model):
-
     # a user to which this tweet is associated
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default= 1)
     tweet_content = models.CharField(max_length= 150, default= "write tweet here")
@@ -23,14 +21,13 @@ class Twee_t(models.Model):
     state = models.CharField(max_length= 20, default= "Bihar")
     phone = models.BigIntegerField()
 
-
     def __str__(self):
         return str(self.tweet_content)    
 
     # Validation in the model
     def clean(self, *args, **kwargs):
-        
-        # some abusive hashtags
+
+        # some abusive hashtags to avoid when posting a tweet
         abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt",
                          "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
                         "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
