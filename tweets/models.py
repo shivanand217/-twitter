@@ -2,36 +2,58 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from .validators import validate_tweet_content
+from .validators import validate_hashtag
 
 # Create your models here.
 # bring all the models into the admin 
 # so that admin will see it
 # every time when make changes to the models do manage.py makemigrations
 
+# some bad hashtags to avoid when posting a tweet
+abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt",
+                    "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
+                "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
+                "buttcheeks", "butthole","negro","neonazi","nigga","zoophilia"]
+
+
+# another type of validations outside the class
+def validate_tweet_content(value):
+    content = value
+    if content == "abc":
+        raise ValidationError("Tweet content cannot be ABC")
+    return value
+
+def validate_hashtag(value):
+    hashtag = value.split()
+    abusive = []
+
+    for tag in hashtag:
+        if tag in abusive_words:
+            abusive.append(tag)
+    
+    if len(abusive) > 0:
+        raise ValidationError("You are using abusive words. Please change that. ")
+
+    return hashtag
+
+
 # class name has to be imported as models in our views
 class Twee_t(models.Model):
+
     # a user to which this tweet is associated
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default= 1)
-    tweet_content = models.CharField(max_length= 150, default= "write tweet here")
+    tweet_content = models.CharField(max_length= 150, default= "write tweet here", validators= [validate_tweet_content])
     updated = models.DateTimeField(auto_now= True)
     timestamp = models.DateTimeField(auto_now_add= True)
-    hashtag = models.CharField(max_length= 160, default= "put hashtag without #")
-    college_name = models.CharField(max_length= 200)
-    city_name = models.CharField(max_length= 20, default= "Patna")
-    state = models.CharField(max_length= 20, default= "Bihar")
-    phone = models.BigIntegerField()
+    hashtag = models.CharField(max_length= 160, default= "put hashtag without #", validators= [validate_hashtag])
 
     def __str__(self):
         return str(self.tweet_content)    
 
+    '''
     # Validation in the model
     def clean(self, *args, **kwargs):
-
-        # some abusive hashtags to avoid when posting a tweet
-        abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt",
-                         "acrotomophilia","hot pocket", "anal", "anilingus", "anus","apeshit","babeland","baby batter",
-                        "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs","booty","busty","butt",
-                        "buttcheeks", "butthole","negro","neonazi","nigga","zoophilia"]
 
         validation_error = []
 
@@ -45,8 +67,10 @@ class Twee_t(models.Model):
             raise ValidationError("This hashtag is abusive. You can't use this.")
 
         # args in super(ModelName, self).clean(*args, **kwargs)
+
         return super(Twee_t, self).clean(*args, **kwargs)
 
+    '''
 
 
 
