@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist 
 
+
 from .models import Twee_t
 
 
