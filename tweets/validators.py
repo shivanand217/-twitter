@@ -10,13 +10,12 @@ from django.core.exceptions import ValidationError
 # some bad hashtags to avoid when posting a tweet
 abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pussy", "bitch", "fuck", "cunt",
                 "acrotomophilia", "hot pocket", "anal", "anilingus", "anus", "apeshit","babeland","baby batter",
-                "bastard","bbw","bdsm","beaner","beaners","blowjob","boob","boobs", "booty", "busty","butt",
-                "buttcheeks", "butthole","negro","neonazi","nigga","zoophilia"]
+                "bastard","bbw","bdsm", "beaner","beaners","blowjob","boob","boobs", "booty", "busty","butt",
+                "buttcheeks", "butthole","negro","neonazi","nigga", "zoophilia"]
 
 # another type of validations outside the class
 def validate_tweet_content(value):
     content = value
-    
     if content == "abc":
         raise ValidationError("Tweet content cannot be ABC")
 
