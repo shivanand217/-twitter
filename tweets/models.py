@@ -12,6 +12,7 @@ from .validators import validate_hashtag
 
 # class name has to be imported as models in our views
 class Twee_t(models.Model):
+    
     # a user to which this tweet is associated
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default= 1)
     tweet_content = models.CharField(max_length= 150, default= "", validators= [validate_tweet_content])

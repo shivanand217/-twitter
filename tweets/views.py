@@ -15,10 +15,11 @@ from .models import Twee_t
 
 from .mixins import FormUserNeededMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixins import UserOwnerMixin
 
 # Create View
 # the arguments are the objects that has to be inherited by this class
-class TweetCreateView(LoginRequiredMixin, FormUserNeededMixin , CreateView):
+class TweetCreateView(LoginRequiredMixin , FormUserNeededMixin , CreateView):
     template_name = "tweets/create_view.html"
     form_class = TweetModelForm
     success_url = "/tweet/create"
@@ -27,14 +28,12 @@ class TweetCreateView(LoginRequiredMixin, FormUserNeededMixin , CreateView):
 
     #redirect_field_name = 'redirect_to'
 
-
 # Update View
-class TweetUpdateView(UpdateView):
+class TweetUpdateView(LoginRequiredMixin , UserOwnerMixin , UpdateView):
     queryset = Twee_t.objects.all()
     form_class = TweetModelForm
     template_name = "tweets/update_view.html"
     success_url = "/tweet/"
-
 
 
 # Retrive View
@@ -42,7 +41,6 @@ class TweetUpdateView(UpdateView):
 class TweetDetailView(DetailView):
     template_name = "tweets/detail_view.html"
     queryset = Twee_t.objects.all()
-
     '''
     def get_object(self):
         try:
