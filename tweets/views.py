@@ -20,6 +20,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # create
 # the arguments are the objects that has to be inherited by this class
 class TweetCreateView(LoginRequiredMixin , FormUserNeededMixin , CreateView):
+   
     template_name = "tweets/create_view.html"
     form_class = TweetModelForm
     success_url = "/tweet/create"
