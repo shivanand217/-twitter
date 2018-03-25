@@ -1,8 +1,8 @@
-from django import forms
+#from django import forms
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import get_list_or_404
-from django.forms.utils import ErrorList
+#from django.forms.utils import ErrorList
 
 # import for Django builtin class based View
 from django.views.generic.detail import DetailView
@@ -15,9 +15,11 @@ from .forms import TweetModelForm
 from .models import Twee_t
 
 from .mixins import FormUserNeededMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # create
-class TweetCreateView(FormUserNeededMixin , CreateView):
+# the arguments are the objects that has to be inherited by this class
+class TweetCreateView(LoginRequiredMixin , FormUserNeededMixin , CreateView):
     template_name = "tweets/create_view.html"
     form_class = TweetModelForm
     success_url = "/tweet/create"
