@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import get_list_or_404
 
+
 # import for Django builtin class based View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-
 
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
@@ -79,7 +79,7 @@ class TweetListView(ListView):
         print(self.request.GET)
         # get the parameters from the URLs
         query = self.request.GET.get("q", None)
-        
+
         if query is not None:
             queryset = queryset.filter(tweet_content=query)
         return queryset

@@ -1,16 +1,15 @@
 
+{% include 'tweets/search_form.html' %} <br/>
 
 {% for tweet in object_list %}
-
-<p> Author: {{ tweet.user }} 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- <b>Tweet:</b> <i>{{ tweet.tweet_content }}</i>
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-<b>Date </b> <i> {{ tweet.timestamp }}</i>
-</p>
-
+    <p> Author: {{ tweet.user }} 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b>Tweet:</b> <i>{{ tweet.tweet_content }}</i>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <b>Date </b> <i> {{ tweet.timestamp }}</i>
+    </p>
 {% empty %}
-    
+
     {% if request.GET.q %}
         <p>No Matching Tweets</p>
     {% else %}
