@@ -13,11 +13,12 @@ abusive_words = ["cock", "dick", "asshole", "ass", "motherfucker", "boobs", "pus
                 "bastard","bbw","bdsm", "beaner","beaners","blowjob","boob","boobs", "booty", "busty","butt",
                 "buttcheeks", "butthole","negro","neonazi","nigga", "zoophilia"]
 
+
 # another type of validations outside the class
 def validate_tweet_content(value):
     content = value
-    if content == "abc":
-        raise ValidationError("Tweet content cannot be ABC")
+    if content == "":
+        raise ValidationError("Tweet content cannot be blank")
 
     return value
 
