@@ -11,7 +11,7 @@ class TweetModelForm(forms.ModelForm):
         
         # give the fields 
         fields = [  
-            #"user",
+            "user",
             "tweet_content",
             "hashtag"
         ]

@@ -1,34 +1,26 @@
-
 from django import forms
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404
 from django.forms.utils import ErrorList
-from django.
 
-# Django builtin class based View
+# import for Django builtin class based View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 
 from django.utils import timezone
-from django.core.exceptions import ObjectDoesNotExist 
-
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import TweetModelForm
 from .models import Twee_t
 
+from .mixins import FormUserNeededMixin
+
 # create
-class TweetCreateView(CreateView):
-    
+class TweetCreateView(FormUserNeededMixin , CreateView):
     template_name = "tweets/create_view.html"
     form_class = TweetModelForm
     success_url = "/tweet/create"
-
-    def form_valid(self, form):
-        if self.request.user.is_authenticated():
-            form.instance.user = self.request.user
-            return super(TweetCreateView,self).form_valid(form)
-        else:
-            form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList(["User must be logged in to continue."])
-            return self.form_invalid(form)
 
 
 ''' Class based views'''
