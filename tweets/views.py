@@ -5,8 +5,10 @@ from django.shortcuts import get_list_or_404
 # import for Django builtin class based View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
 
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
@@ -16,6 +18,7 @@ from .models import Twee_t
 from .mixins import FormUserNeededMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .mixins import UserOwnerMixin
+
 
 # Create View
 # the arguments are the objects that has to be inherited by this class
@@ -34,7 +37,6 @@ class TweetUpdateView(LoginRequiredMixin , UserOwnerMixin , UpdateView):
     form_class = TweetModelForm
     template_name = "tweets/update_view.html"
     success_url = "/tweet/"
-
 
 # Retrive View
 ''' Class based views'''
