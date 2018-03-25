@@ -6,9 +6,11 @@ from django.shortcuts import get_list_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
+
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
 
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
@@ -38,10 +40,17 @@ class TweetUpdateView(LoginRequiredMixin , UserOwnerMixin , UpdateView):
     template_name = "tweets/update_view.html"
     success_url = "/tweet/"
 
+
+# Delete View
+class TweetDeleteView(LoginRequiredMixin, DeleteView):
+    model = Twee_t
+    template_name = "tweets/delete_confirm.html"
+    success_url = reverse_lazy("home")
+
 # Retrive View
 ''' Class based views'''
 class TweetDetailView(DetailView):
-    template_name = "tweets/detail_view.html"
+    template_name = "tweets/twee_t_detail.html"
     queryset = Twee_t.objects.all()
     '''
     def get_object(self):
@@ -60,15 +69,26 @@ class TweetDetailView(DetailView):
         print(context)
         return context
 
+
 class TweetListView(ListView):
-    template_name = "tweets/list_view.html"
+    template_name = "tweets/twee_t_list.html"
     queryset = Twee_t.objects.all()
     
+    def get_queryset(self, *args, **kwargs):
+        queryset = Twee_t.objects.all()
+        print(self.request.GET)
+        # get the parameters from the URLs
+        query = self.request.GET.get("q", None)
+        
+        if query is not None:
+            queryset = queryset.filter(tweet_content=query)
+        return queryset
+
     def get_context_data(self, *args, **kwargs):
         context = super(TweetListView, self).get_context_data(*args, **kwargs)
         # we can add context here
         context["another_context"] = Twee_t.objects.all()
-        print(context)
+        #print(context)
         return context
 
 '''

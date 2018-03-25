@@ -1,11 +1,20 @@
 
+
 {% for tweet in object_list %}
 
-<h1>User is</h1> <p>{{ tweet.user }}</p> <br/>
-{{ tweet.tweet_content }}  <br/>
-{{ tweet.timestamp }} <br/>
+<p> Author: {{ tweet.user }} 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ <b>Tweet:</b> <i>{{ tweet.tweet_content }}</i>
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+<b>Date </b> <i> {{ tweet.timestamp }}</i>
+</p>
 
 {% empty %}
-    <p> No tweets yet. </p>
+    
+    {% if request.GET.q %}
+        <p>No Matching Tweets</p>
+    {% else %}
+        <p>No Tweets yet.</p>
+    {% endif %}
 
 {% endfor %}
