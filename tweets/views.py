@@ -1,13 +1,12 @@
-#from django import forms
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import get_list_or_404
-#from django.forms.utils import ErrorList
 
 # import for Django builtin class based View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
 
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
@@ -17,15 +16,28 @@ from .models import Twee_t
 from .mixins import FormUserNeededMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-# create
+# Create View
 # the arguments are the objects that has to be inherited by this class
-class TweetCreateView(LoginRequiredMixin , FormUserNeededMixin , CreateView):
-   
+class TweetCreateView(LoginRequiredMixin, FormUserNeededMixin , CreateView):
     template_name = "tweets/create_view.html"
     form_class = TweetModelForm
     success_url = "/tweet/create"
+    # user will be send to this page for login when creating a tweet
+    login_url = '/admin/'
+
+    #redirect_field_name = 'redirect_to'
 
 
+# Update View
+class TweetUpdateView(UpdateView):
+    queryset = Twee_t.objects.all()
+    form_class = TweetModelForm
+    template_name = "tweets/update_view.html"
+    success_url = "/tweet/"
+
+
+
+# Retrive View
 ''' Class based views'''
 class TweetDetailView(DetailView):
     template_name = "tweets/detail_view.html"
@@ -51,14 +63,6 @@ class TweetDetailView(DetailView):
 class TweetListView(ListView):
     template_name = "tweets/list_view.html"
     queryset = Twee_t.objects.all()
-
-    '''    
-    def get_object(self):
-        print(self.kwargs)
-        pk = self.kwargs.get("pk")
-        #return Twee_t.objects.get(pk= 1)
-        return queryset
-    '''
     
     def get_context_data(self, *args, **kwargs):
         context = super(TweetListView, self).get_context_data(*args, **kwargs)

@@ -9,7 +9,7 @@ class TweetModelForm(forms.ModelForm):
         # give the model name here to which this form should be added
         model = Twee_t
         
-        # give the fields 
+        # Give the fields 
         fields = [  
             "user",
             "tweet_content",
