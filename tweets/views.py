@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import get_list_or_404
 
-
 # import for Django builtin class based View
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -11,11 +10,13 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
+from django.urls import reverse
 
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import TweetModelForm
 from .models import Twee_t
+
 
 from .mixins import FormUserNeededMixin
 from django.contrib.auth.mixins import LoginRequiredMixin

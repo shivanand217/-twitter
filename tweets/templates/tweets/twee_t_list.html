@@ -1,13 +1,19 @@
 
-{% include 'tweets/search_form.html' %} <br/>
+
+<form method="POST" action={% url 'tweets/twee_t_list' %}>
+        <input type='text' name='q' placeholder='Search' />
+        <input type='submit' value='Search'>
+</form>
 
 {% for tweet in object_list %}
+
     <p> Author: {{ tweet.user }} 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <b>Tweet:</b> <i>{{ tweet.tweet_content }}</i>
     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-    <b>Date </b> <i> {{ tweet.timestamp }}</i>
+    <b>Date </b> <i> {{ tweet.timestamp }} </i>
     </p>
+
 {% empty %}
 
     {% if request.GET.q %}
